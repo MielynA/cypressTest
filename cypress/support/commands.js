@@ -64,3 +64,61 @@ Cypress.Commands.add(
 Cypress.Commands.add("clickContinue", () => {
   cy.get('[data-qa="continue-button"]').click();
 });
+
+Cypress.Commands.add("clickLoginMenu", () => {
+  cy.get(".navbar-nav").should("be.visible");
+  cy.get('a[href="/login"]').should("contain", "Signup / Login").click();
+  cy.url().should("include", "/login");
+});
+
+Cypress.Commands.add("createUser", () => {
+  cy.get(".signup-form").should("be.visible");
+  const timestamp = new Date(Date.now())
+    .toLocaleDateString("en-US")
+    .replace(/\//g, "");
+
+  let uniqueName = `testUsers_${timestamp}`;
+  let emailAdd = `testUsers${timestamp}+2@example.com`;
+
+  cy.get('[data-qa="signup-name"]').type(uniqueName);
+  cy.get('[data-qa="signup-email"]').type(emailAdd);
+  cy.get('[data-qa="signup-button"]').click();
+  cy.get(".login-form").contains("Enter Account Information"); //verify the account information page
+
+  //verify without @in the email
+
+  cy.get('.radio input[type="radio"]')
+    .its("length")
+    .then((count) => {
+      const randomIndex = Math.floor(Math.random() * count);
+      cy.get('.radio input[type="radio"]')
+        .eq(randomIndex)
+        .check({ force: true });
+    });
+  //Populate password
+  cy.get('[data-qa="password"]').type("Password123");
+  //random select of dropdown birthdate
+  cy.randomSelect('[data-qa="days"]');
+  cy.randomSelect('[data-qa="months"]');
+  cy.randomSelect('[data-qa="years"]');
+
+  //checkboxes
+  cy.get("#newsletter").check();
+  cy.get("#optin").check();
+
+  //fill forms
+  cy.fillform(
+    "Mietest",
+    "test",
+    "123 houston texas",
+    "United States",
+    "Texas",
+    "houston",
+    "11123",
+    "123-456-5567"
+  );
+  cy.get('[data-qa="create-account"]').click();
+  cy.contains("Account Created").should("be.visible");
+  cy.get('[data-qa="continue-button"]').click();
+  cy.get(".navbar-nav").contains("Logged in as " + uniqueName);
+});
