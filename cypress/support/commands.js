@@ -78,7 +78,7 @@ Cypress.Commands.add("createUser", () => {
     .replace(/\//g, "");
 
   let uniqueName = `testUsers_${timestamp}`;
-  let emailAdd = `testUsers${timestamp}+2@example.com`;
+  let emailAdd = `testUsers${timestamp}+7@example.com`;
 
   cy.get('[data-qa="signup-name"]').type(uniqueName);
   cy.get('[data-qa="signup-email"]').type(emailAdd);
@@ -121,4 +121,24 @@ Cypress.Commands.add("createUser", () => {
   cy.contains("Account Created").should("be.visible");
   cy.get('[data-qa="continue-button"]').click();
   cy.get(".navbar-nav").contains("Logged in as " + uniqueName);
+});
+
+Cypress.Commands.add("validLoginUser", () => {
+  cy.get('[data-qa="login-email"]').type("testUsers2272025+8@example.com");
+  cy.get('[data-qa="login-password"]').type("Password123");
+  cy.get('[data-qa="login-button"]').click();
+  cy.get(".navbar-nav")
+    .contains("Logged in as testUsers_2272025")
+    .should("be.visible");
+});
+
+Cypress.Commands.add("deleteUser", () => {
+  cy.contains("Delete Account").click();
+  cy.contains("Account Deleted!").should("be.visible");
+  cy.clickContinue();
+});
+
+Cypress.Commands.add("logoutUser", () => {
+  cy.contains("Logout").click();
+  cy.url().should("eq", "https://automationexercise.com/login");
 });
