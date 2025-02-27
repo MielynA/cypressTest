@@ -142,3 +142,13 @@ Cypress.Commands.add("logoutUser", () => {
   cy.contains("Logout").click();
   cy.url().should("eq", "https://automationexercise.com/login");
 });
+
+Cypress.Commands.add("submitButton", () => {
+  cy.get('[data-qa="submit-button"]').click();
+  cy.get(".status").should(
+    "have.text",
+    "Success! Your details have been submitted successfully."
+  );
+  cy.contains("Home").click();
+  cy.url().should("eq", "https://automationexercise.com/");
+});
