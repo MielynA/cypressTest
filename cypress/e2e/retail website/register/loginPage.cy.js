@@ -3,7 +3,7 @@ describe("Login user", () => {
     cy.visit("http://automationexercise.com");
   });
 
-  it.skip("should login user with correct email and password", () => {
+  it("should login user with correct email and password", () => {
     cy.clickLoginMenu();
     cy.createUser();
     cy.contains("Delete Account").click();
@@ -11,7 +11,7 @@ describe("Login user", () => {
     cy.clickContinue();
   });
 
-  it.skip("should login user with incorrect email and password", () => {
+  it("should login user with incorrect email and password", () => {
     cy.clickLoginMenu();
     cy.get('[data-qa="login-email"]').type("testwrong@example.com");
     cy.get('[data-qa="login-password"]').type("testWrong");
@@ -27,7 +27,7 @@ describe("Login user", () => {
     cy.logoutUser();
   });
 
-  it.skip("should NOT register existing email", () => {
+  it("should NOT register existing email", () => {
     cy.clickLoginMenu();
     cy.get('[data-qa="signup-name"]').type("Mietest");
     cy.get('[data-qa="signup-email"]').type("testUsers2272025+3@example.com");
