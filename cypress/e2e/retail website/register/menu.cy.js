@@ -18,7 +18,7 @@ describe("Testing menu bar of the automation website", () => {
     cy.contains("Test Cases").click();
     cy.url().should("eq", "https://automationexercise.com/test_cases");
     cy.get(".panel-group").each(($el) => {
-      cy.wrap($el).click();
+      cy.wrap($el).click().should("be.visible");
     });
   });
 });
