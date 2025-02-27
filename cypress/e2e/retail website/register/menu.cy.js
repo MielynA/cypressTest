@@ -1,3 +1,5 @@
+import "cypress-file-upload";
+
 describe("Testing menu bar of the automation website", () => {
   beforeEach(() => {
     cy.visit("http://automationexercise.com");

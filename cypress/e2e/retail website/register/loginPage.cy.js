@@ -1,5 +1,3 @@
-import "cypress-file-upload";
-
 describe("Login user", () => {
   beforeEach(() => {
     cy.visit("http://automationexercise.com");
