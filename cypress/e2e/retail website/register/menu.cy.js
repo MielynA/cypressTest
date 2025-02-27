@@ -1,4 +1,4 @@
-describe("testing menu bar of the automation website", () => {
+describe("Testing menu bar of the automation website", () => {
   beforeEach(() => {
     cy.visit("http://automationexercise.com");
     cy.clickLoginMenu();
