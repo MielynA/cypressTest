@@ -30,6 +30,18 @@
 //   cy.get("#password").type(password);
 //   cy.get('button[type="submit"]').click();
 // });
+Cypress.Commands.add("accessUrl", () => {
+  cy.visit("http://automationexercise.com");
+});
+
+Cypress.Commands.add("navigateTo", (menuText, directedToPath) => {
+  cy.get(".navbar-nav")
+    .contains(menuText)
+    .should("have.attr", "href", directedToPath)
+    .click();
+
+  cy.url().should("include", directedToPath);
+});
 
 Cypress.Commands.add("randomSelect", (selector) => {
   cy.get(selector)
