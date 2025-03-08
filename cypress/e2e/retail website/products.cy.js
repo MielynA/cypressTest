@@ -7,7 +7,7 @@ beforeEach(() => {
 });
 
 describe("Products Page", () => {
-  it.skip("should verify the products page", () => {
+  it("should verify the products page", () => {
     cy.get("ul.nav a").then(($links) => {
       const randomIndex = Math.floor(Math.random() * $links.length);
       const selectedLink = $links[randomIndex];
@@ -48,6 +48,4 @@ describe("Products Page", () => {
       cy.get(".single-products").should("be.visible");
     });
   });
-  //verify the search product by clicking the search icon button
-  //verify the search product by hitting return or enter key
 });
