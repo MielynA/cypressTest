@@ -31,6 +31,17 @@ describe("Products Page", () => {
       expect(text).to.include("Availability");
       expect(text).to.include("Brand");
       expect(text).to.include("Condition");
+
+      //   cy.get("p")
+      //     .invoke("text")
+      //     .then((text) => {
+      //       expect(text.trim()).to.not.be.empty;
+      //     });
     });
+    cy.get("p")
+      .should("be.visible")
+      .and(($el) => {
+        expect($el.text().trim()).to.not.be.empty;
+      });
   });
 });
