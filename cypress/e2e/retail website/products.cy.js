@@ -23,14 +23,16 @@ describe("Products Page", () => {
           expect(text.trim()).to.not.be.empty; //ensure text is not empty alternative approach
         });
     });
-    // cy.get("p").should("contain.text", "Availability:");
-    // cy.get("p").should("contain.text", "Brand:");
-    // cy.get("p").should("contain.text", "Condition");
     cy.get("p").should(($paragraph) => {
       const text = $paragraph.text();
       expect(text).to.include("Availability");
       expect(text).to.include("Brand");
       expect(text).to.include("Condition");
     });
+    cy.get("p")
+      .should("be.visible")
+      .and(($el) => {
+        expect($el.text().trim()).to.not.be.empty;
+      });
   });
 });
