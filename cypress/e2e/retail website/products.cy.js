@@ -4,13 +4,6 @@ beforeEach(() => {
   cy.accessUrl();
   cy.navigateTo("Products", "/products");
   cy.contains("All Products").should("be.visible");
-
-  //   cy.get("ul.nav a").then(($links) => {
-  //     const randomIndex = Math.floor(Math.random() * $links.length);
-  //     const selectedLink = $links[randomIndex];
-  //     cy.wrap(selectedLink).click();
-  //     cy.url().should("include", selectedLink.getAttribute("href"));
-  //   });
 });
 
 describe("Products Page", () => {
