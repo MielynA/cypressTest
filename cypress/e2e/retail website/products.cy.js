@@ -8,10 +8,6 @@ beforeEach(() => {
 
 describe("Products Page", () => {
   it("should verify the products page", () => {
-});
-
-describe("Products Page", () => {
-  it.skip("should verify the products page", () => {
     cy.get("ul.nav a").then(($links) => {
       const randomIndex = Math.floor(Math.random() * $links.length);
       const selectedLink = $links[randomIndex];
