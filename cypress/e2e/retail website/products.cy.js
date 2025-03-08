@@ -23,9 +23,6 @@ describe("Products Page", () => {
           expect(text.trim()).to.not.be.empty; //ensure text is not empty alternative approach
         });
     });
-    // cy.get("p").should("contain.text", "Availability:");
-    // cy.get("p").should("contain.text", "Brand:");
-    // cy.get("p").should("contain.text", "Condition");
     cy.get("p").should(($paragraph) => {
       const text = $paragraph.text();
       expect(text).to.include("Availability");
