@@ -1,7 +1,5 @@
 import { validateFooter } from "../../../support/footerUtils";
 
-export default { validateFooter };
-
 beforeEach(() => {
   cy.accessUrl();
 });
