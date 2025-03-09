@@ -18,6 +18,9 @@ describe("Verify the footer of the page", () => {
     cy.get("#subscribe").click();
     cy.get(".alert-sucess").should("not.exist");
   });
+
+  it("should verify input types and attributes", () => {
+    cy.get("#susbscribe_email").should("have.attr", "type", "email");
+    cy.get("#subscribe").should("have.attr", "type", "submit");
+  });
 });
-//should not do anything when email is not populated
-// cy.get("##susbscribe_email").should("have.attr", "required");
