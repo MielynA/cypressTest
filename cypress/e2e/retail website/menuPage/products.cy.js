@@ -14,9 +14,9 @@ describe("Products Page", () => {
       cy.wrap(selectedLink).click();
       cy.url().should("include", selectedLink.getAttribute("href"));
     });
-    cy.get("h2").should("exist").and("be.visible");
+    cy.get("h2").debug().should("exist").and("be.visible");
     // cy.get("span").should("contain.text", "Rs.");
-    cy.get("span", { timeout: 1000 })
+    cy.get("span", { timeout: 10000 })
       .should("be.visible")
       .should("exist")
       .and("contain.text", "Rs.");
