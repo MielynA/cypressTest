@@ -6,16 +6,7 @@ beforeEach(() => {
 
 describe("Add products in Cart", () => {
   it("should verify the product is successfully added to cart", () => {
-    cy.get(".single-products").first().trigger("mouseover");
-    cy.get("a.btn.btn-default.add-to-cart")
-      .should("be.visible")
-      .first()
-      .click();
-
-    cy.get(".modal-content").should("be.visible");
-    cy.get('[data-dismiss="modal"]')
-      .should("contain.text", "Continue Shopping")
-      .click();
+    cy.addAndConfirmProductInCart();
     //get the second product
     cy.get(".single-products").eq(2).trigger("mouseover");
     cy.get("a.btn.btn-default.add-to-cart").should("be.visible").eq(2).click();

@@ -164,3 +164,13 @@ Cypress.Commands.add("submitButton", () => {
   cy.contains("Home").click();
   cy.url().should("eq", "https://automationexercise.com/");
 });
+
+Cypress.Commands.add("addAndConfirmProductInCart", () => {
+  cy.get(".single-products").first().trigger("mouseover");
+  cy.get("a.btn.btn-default.add-to-cart").should("be.visible").first().click();
+
+  cy.get(".modal-content").should("be.visible");
+  cy.get('[data-dismiss="modal"]')
+    .should("contain.text", "Continue Shopping")
+    .click();
+});
