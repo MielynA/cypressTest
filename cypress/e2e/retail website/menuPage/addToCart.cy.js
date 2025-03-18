@@ -25,7 +25,7 @@ describe("Add products in Cart", () => {
     });
   });
 
-  it("should verify the quantity in the Card", () => {
+  it("should verify the quantity in the Cart", () => {
     cy.get('a[href="/product_details/1"]').contains("View Product").click();
     cy.get("#quantity").clear().type(4).should("have.value", "4");
     cy.get(".btn.btn-default.cart").should("be.visible").click();
