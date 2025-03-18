@@ -33,4 +33,16 @@ describe("Add products in Cart", () => {
       });
     });
   });
+
+  it("should verify the quantity in the Card", () => {
+    cy.get('a[href="/product_details/1"]').contains("View Product").click();
+    cy.get("#quantity").clear().type(4).should("have.value", "4");
+    cy.get(".btn.btn-default.cart").should("be.visible").click();
+    cy.get(".modal-content").should("be.visible");
+    cy.get('[data-dismiss="modal"]')
+      .should("contain.text", "Continue Shopping")
+      .click();
+    cy.navigateTo("Cart", "/view_cart").should("exist");
+    cy.get(".disabled").should("have.text", "4");
+  });
 });
