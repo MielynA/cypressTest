@@ -165,12 +165,14 @@ Cypress.Commands.add("submitButton", () => {
   cy.url().should("eq", "https://automationexercise.com/");
 });
 
-Cypress.Commands.add("addAndConfirmProductInCart", () => {
-  cy.get(".single-products").first().trigger("mouseover");
-  cy.get("a.btn.btn-default.add-to-cart").should("be.visible").first().click();
-
+Cypress.Commands.add("dismissCartModal", () => {
   cy.get(".modal-content").should("be.visible");
   cy.get('[data-dismiss="modal"]')
     .should("contain.text", "Continue Shopping")
     .click();
+});
+
+Cypress.Commands.add("addToCart", () => {
+  cy.get(".single-products").first().trigger("mouseover");
+  cy.get("a.btn.btn-default.add-to-cart").should("be.visible").first().click();
 });

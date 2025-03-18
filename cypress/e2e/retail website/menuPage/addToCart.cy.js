@@ -6,14 +6,12 @@ beforeEach(() => {
 
 describe("Add products in Cart", () => {
   it("should verify the product is successfully added to cart", () => {
-    cy.addAndConfirmProductInCart();
+    cy.addToCart();
+    cy.dismissCartModal();
     //get the second product
     cy.get(".single-products").eq(2).trigger("mouseover");
     cy.get("a.btn.btn-default.add-to-cart").should("be.visible").eq(2).click();
-    cy.get(".modal-content").should("be.visible");
-    cy.get('[data-dismiss="modal"]')
-      .should("contain.text", "Continue Shopping")
-      .click();
+    cy.dismissCartModal();
     cy.navigateTo("Cart", "/view_cart").should("exist");
     cy.get('tr[id^="product-"]').each(($row) => {
       const productId = $row.attr("id"); // to get dynamic id
