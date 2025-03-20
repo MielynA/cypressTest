@@ -45,20 +45,13 @@ describe("Add products in Cart", () => {
   it("should place order and register while checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
-    // cy.navigateTo("Cart", "/view_cart").should("exist");
-    // cy.get(".btn.btn-default.check_out")
-    //   .should("contain.text", "Proceed To Checkout")
-    //   .click();
+
     proceedToCheckout();
+
     cy.get('.modal-body a[href="/login"]')
       .should("contain.text", "Register / Login")
       .click();
     cy.createUser();
-
-    // cy.navigateTo("Cart", "/view_cart").should("exist");
-    // cy.get(".btn.btn-default.check_out")
-    //   .should("contain.text", "Proceed To Checkout")
-    //   .click();
     proceedToCheckout();
     cy.get(".heading").eq(1).should("be.visible");
     cy.get(".btn.btn-default.check_out")
