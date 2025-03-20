@@ -45,9 +45,7 @@ describe("Add products in Cart", () => {
   it.skip("should place order and register while checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
-
     proceedToCheckout();
-
     cy.get('.modal-body a[href="/login"]')
       .should("contain.text", "Register / Login")
       .click();
@@ -67,9 +65,30 @@ describe("Add products in Cart", () => {
     cy.get('[data-qa="expiry-month"]').type("10").should("have.value", "10");
     cy.get('[data-qa="expiry-year"]').type("2030").should("have.value", "2030");
     cy.get('[data-qa="pay-button"]').click();
-    // cy.contains("Your order has been placed successfully!").should(
-    //   "be.visible"
-    // );
+    cy.get('[data-qa="order-placed"]').should("contain.text", "Order Placed!");
+    cy.deleteUser();
+  });
+
+  it("should place order and register before checkout", () => {
+    cy.navigateTo(" Signup / Login", "/login");
+    cy.createUser();
+    cy.addToCart();
+    cy.dismissCartModal();
+    proceedToCheckout();
+    cy.get(".heading").eq(1).should("be.visible");
+    cy.get(".btn.btn-default.check_out")
+      .should("contain.text", "Place Order")
+      .click();
+    cy.get('[data-qa="name-on-card"]')
+      .type("test name")
+      .should("have.value", "test name");
+    cy.get('[data-qa="card-number"]')
+      .type("122333444455555")
+      .should("have.value", "122333444455555");
+    cy.get('[data-qa="cvc"]').type("123").should("have.value", "123");
+    cy.get('[data-qa="expiry-month"]').type("10").should("have.value", "10");
+    cy.get('[data-qa="expiry-year"]').type("2030").should("have.value", "2030");
+    cy.get('[data-qa="pay-button"]').click();
     cy.get('[data-qa="order-placed"]').should("contain.text", "Order Placed!");
     cy.deleteUser();
   });
