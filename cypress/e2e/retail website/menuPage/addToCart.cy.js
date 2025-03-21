@@ -42,7 +42,7 @@ describe("Add products in Cart", () => {
     cy.get(".disabled").should("have.text", "4");
   });
 
-  it("should place order and register while checkout", () => {
+  it("should place order and register WHILE checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
     proceedToCheckout();
@@ -69,7 +69,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and register before checkout", () => {
+  it("should place order and REGISTER before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -93,7 +93,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and login before checkout", () => {
+  it("should place order and LOGIN before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -125,4 +125,6 @@ describe("Add products in Cart", () => {
       .should("be.visible")
       .and("contain.text", "Cart is empty!");
   });
+
+  it("should view the category products", () => {});
 });
