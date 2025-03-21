@@ -91,7 +91,7 @@ Cypress.Commands.add("createUser", () => {
 
   let uniqueName = `testUsers_${timestamp}`;
 
-  let emailAdd = `testUsers${timestamp}+20@example.com`;
+  let emailAdd = `testUsers${timestamp}+1@example.com`;
 
   cy.get('[data-qa="signup-name"]').type(uniqueName);
   cy.get('[data-qa="signup-email"]').type(emailAdd);

@@ -12,7 +12,7 @@ const proceedToCheckout = () => {
 };
 
 describe("Add products in Cart", () => {
-  it.skip("should verify the product is successfully added to cart", () => {
+  it("should verify the product is successfully added to cart", () => {
     cy.addToCart();
     cy.dismissCartModal();
     //get the second product
@@ -30,7 +30,7 @@ describe("Add products in Cart", () => {
     });
   });
 
-  it.skip("should verify the quantity in the Cart", () => {
+  it("should verify the quantity in the Cart", () => {
     cy.get('a[href="/product_details/1"]').contains("View Product").click();
     cy.get("#quantity").clear().type(4).should("have.value", "4");
     cy.get(".btn.btn-default.cart").should("be.visible").click();
@@ -42,7 +42,7 @@ describe("Add products in Cart", () => {
     cy.get(".disabled").should("have.text", "4");
   });
 
-  it.skip("should place order and register while checkout", () => {
+  it("should place order and register while checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
     proceedToCheckout();
@@ -114,5 +114,15 @@ describe("Add products in Cart", () => {
     cy.get('[data-qa="pay-button"]').click();
     cy.get('[data-qa="order-placed"]').should("contain.text", "Order Placed!");
     cy.deleteUser();
+  });
+
+  it("should remove products from cart", () => {
+    cy.addToCart();
+    cy.dismissCartModal();
+    cy.navigateTo("Cart", "/view_cart").should("exist");
+    cy.get(".cart_quantity_delete").click();
+    cy.get("#empty_cart")
+      .should("be.visible")
+      .and("contain.text", "Cart is empty!");
   });
 });
