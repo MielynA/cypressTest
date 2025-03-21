@@ -93,7 +93,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and register before checkout", () => {
+  it("should place order and login before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
