@@ -12,7 +12,7 @@ const proceedToCheckout = () => {
 };
 
 describe("Add products in Cart", () => {
-  it.skip("should verify the product is successfully added to cart", () => {
+  it("should verify the product is successfully added to cart", () => {
     cy.addToCart();
     cy.dismissCartModal();
     //get the second product
@@ -30,7 +30,7 @@ describe("Add products in Cart", () => {
     });
   });
 
-  it.skip("should verify the quantity in the Cart", () => {
+  it("should verify the quantity in the Cart", () => {
     cy.get('a[href="/product_details/1"]').contains("View Product").click();
     cy.get("#quantity").clear().type(4).should("have.value", "4");
     cy.get(".btn.btn-default.cart").should("be.visible").click();
@@ -42,7 +42,7 @@ describe("Add products in Cart", () => {
     cy.get(".disabled").should("have.text", "4");
   });
 
-  it.skip("should place order and register while checkout", () => {
+  it("should place order and register while checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
     proceedToCheckout();
@@ -69,7 +69,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it.skip("should place order and register before checkout", () => {
+  it("should place order and register before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -93,7 +93,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it.skip("should place order and register before checkout", () => {
+  it("should place order and register before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
