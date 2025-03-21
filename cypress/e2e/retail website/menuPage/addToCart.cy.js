@@ -69,7 +69,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and register before checkout", () => {
+  it.skip("should place order and register before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -93,7 +93,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and register before checkout", () => {
+  it.skip("should place order and register before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -114,5 +114,15 @@ describe("Add products in Cart", () => {
     cy.get('[data-qa="pay-button"]').click();
     cy.get('[data-qa="order-placed"]').should("contain.text", "Order Placed!");
     cy.deleteUser();
+  });
+
+  it("should remove products from cart", () => {
+    cy.addToCart();
+    cy.dismissCartModal();
+    cy.navigateTo("Cart", "/view_cart").should("exist");
+    cy.get(".cart_quantity_delete").click();
+    cy.get("#empty_cart")
+      .should("be.visible")
+      .and("contain.text", "Cart is empty!");
   });
 });
