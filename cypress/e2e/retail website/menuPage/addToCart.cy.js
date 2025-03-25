@@ -125,6 +125,4 @@ describe("Add products in Cart", () => {
       .should("be.visible")
       .and("contain.text", "Cart is empty!");
   });
-
-  it("should view the category products", () => {});
 });
