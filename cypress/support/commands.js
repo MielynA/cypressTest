@@ -91,7 +91,7 @@ Cypress.Commands.add("createUser", () => {
 
   let uniqueName = `testUsers_${timestamp}`;
 
-  let emailAdd = `testUsers${timestamp}+1@example.com`;
+  let emailAdd = `testUsers${timestamp}+4@example.com`;
 
   cy.get('[data-qa="signup-name"]').type(uniqueName);
   cy.get('[data-qa="signup-email"]').type(emailAdd);
@@ -137,7 +137,7 @@ Cypress.Commands.add("createUser", () => {
 });
 
 Cypress.Commands.add("validLoginUser", () => {
-  cy.get('[data-qa="login-email"]').type("testUsers2272025+8@example.com");
+  cy.get('[data-qa="login-email"]').type("testUsers2272025+2@example.com");
   cy.get('[data-qa="login-password"]').type("Password123");
   cy.get('[data-qa="login-button"]').click();
   cy.get(".navbar-nav")
