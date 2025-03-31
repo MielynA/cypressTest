@@ -3,7 +3,7 @@ beforeEach(() => {
 });
 
 describe("Category Products", () => {
-  it.skip("should view and select category products", () => {
+  it("should view and select category products", () => {
     cy.get(".left-sidebar").should("contain.text", "Category");
     // Open Women category and click the first link
     cy.get(".panel-title").contains("Women").click();
