@@ -74,4 +74,19 @@ describe("Products Page", () => {
       cy.get("td.cart_quantity").should("exist").and("not.to.be.empty");
     });
   });
+
+  it("should able to add review on product", () => {
+    cy.get('a[href="/product_details/1"]').contains("View Product").click();
+    cy.get("#name").type("test").should("have.value", "test");
+    cy.get("#email")
+      .type("me@example.com")
+      .should("have.value", "me@example.com");
+    cy.get("#review")
+      .type("this is a test review comment")
+      .should("have.value", "this is a test review comment");
+    cy.get("#button-review").contains("Submit").click();
+    cy.get(".alert-success")
+      .contains("Thank you for your review.")
+      .should("exist");
+  });
 });
