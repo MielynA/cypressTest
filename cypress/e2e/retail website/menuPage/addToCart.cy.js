@@ -97,6 +97,7 @@ describe("Add products in Cart", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
+    cy.dismissCartModal();
     proceedToCheckout();
     cy.get(".heading").eq(1).should("be.visible");
     cy.get(".btn.btn-default.check_out")
