@@ -52,4 +52,26 @@ describe("Products Page", () => {
       cy.get(".single-products").should("be.visible");
     });
   });
+
+  it("should search products and verify cart after login", () => {
+    cy.fixture("searchQueries").then((data) => {
+      data.queries.forEach((name) => {
+        cy.get("#search_product").clear().type(name);
+      });
+      cy.get(".features_items")
+        .should("exist")
+        .and("contain.text", "All Products")
+        .should("be.visible");
+
+      cy.get(".single-products").should("be.visible");
+      cy.addToCart();
+      cy.dismissCartModal();
+      cy.clickLoginMenu();
+      cy.validLoginUser();
+      cy.navigateTo("Cart", "/view_cart").should("exist");
+      cy.get("td.cart_description").should("exist");
+      cy.get("td.cart_price").should("contain.text", "Rs");
+      cy.get("td.cart_quantity").should("exist").and("not.to.be.empty");
+    });
+  });
 });
