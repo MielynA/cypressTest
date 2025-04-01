@@ -41,7 +41,7 @@ Automatically runs test suite via CI pipeline (e.g., GitHub Actions)
 
 Helps ensure high test reliability across code changes
 
-#cypressTest/
+# cypressTest/
 │
 ├── cypress/
 │   ├── e2e/             # Test specs
@@ -51,12 +51,11 @@ Helps ensure high test reliability across code changes
 ├── .github/workflows/   # GitHub Actions CI config
 ├── cypress.config.js    # Cypress config
 └── README.md
-# ```git clone https://github.com/MielynA/cypressTest
+# git clone https://github.com/MielynA/cypressTest
 cd cypressTest
 npm install
 npx cypress open     # for interactive mode
 npx cypress run      # for headless CI mode
-```
 
 # 👩‍💻 Author
 Created and maintained by @MielynA to showcase scalable test automation design, with full CI/CD integration using Cypress.
