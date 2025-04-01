@@ -3,7 +3,7 @@ beforeEach(() => {
 });
 
 describe("Category Products", () => {
-  it.skip("should view and select category products", () => {
+  it("should view and select category products", () => {
     cy.get(".left-sidebar").should("contain.text", "Category");
     // Open Women category and click the first link
     cy.get(".panel-title").contains("Women").click();
@@ -15,7 +15,7 @@ describe("Category Products", () => {
     cy.get(".title").should("be.visible").and("contain.text", "Men");
   });
 
-  it.skip("should view and cart brand products", () => {
+  it("should view and cart brand products", () => {
     cy.navigateTo("Products", "/products");
     cy.contains("All Products").should("be.visible");
     cy.get(".left-sidebar").should("contain.text", "Category").should("exist");
@@ -26,7 +26,7 @@ describe("Category Products", () => {
     cy.get(".title").should("be.visible").and("contain.text", "Men");
   });
 
-  it.skip("should view and cart brand products", () => {
+  it("should view and cart brand products", () => {
     cy.navigateTo("Products", "/products");
     cy.contains("All Products").should("be.visible");
     cy.get(".left-sidebar").should("contain.text", "Category").should("exist");

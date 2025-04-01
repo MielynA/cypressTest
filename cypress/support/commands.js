@@ -90,8 +90,8 @@ Cypress.Commands.add("createUser", () => {
     .replace(/\//g, "");
 
   let uniqueName = `testUsers_${timestamp}`;
-
-  let emailAdd = `testUsers${timestamp}+5@example.com`;
+  const randomSuffix = Math.floor(Math.random() * 1000);
+  let emailAdd = `testUsers${timestamp}+${randomSuffix}@example.com`;
 
   cy.get('[data-qa="signup-name"]').type(uniqueName);
   cy.get('[data-qa="signup-email"]').type(emailAdd);
