@@ -45,8 +45,8 @@ Helps ensure high test reliability across code changes
 git clone https://github.com/MielynA/cypressTest
 cd cypressTest
 npm install
-npx cypress open     # for interactive mode
-npx cypress run      # for headless CI mode
+npx cypress open  - UI interactive 
+npx cypress run - headless
 
 # 👩‍💻 Author
 Created and maintained by @MielynA to showcase scalable test automation design, with full CI/CD integration using Cypress.
