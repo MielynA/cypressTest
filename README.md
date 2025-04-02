@@ -1,8 +1,10 @@
 # 🧪 Cypress Test Automation Framework – AutomationExercise.com
-This project is a fully custom Cypress test automation framework built from scratch in JavaScript, designed to validate critical user flows on Automation Exercise.
+This project is a fully custom Cypress test automation framework built from scratch in JavaScript, designed to validate critical user flows on Automation Exercise. https://automationexercise.com/
 
 It also includes a working CI/CD pipeline integration, enabling seamless automated test runs on every code push.
 
+# Test Cases
+https://automationexercise.com/test_cases
 
 # 🔧 Tech Stack
 Framework: Cypress
