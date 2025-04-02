@@ -6,6 +6,7 @@ describe("Verify scroll up and down of the page", () => {
 
   it('should verify the scroll up using "arrow" and scroll down functionality', () => {
     cy.scrollTo("bottom");
+    cy.get(".single-widget").contains("Subscription").should("be.visible");
     cy.get("#scrollUp").should("be.visible").click();
     cy.window().its("scrollY").should("equal", 0);
     cy.get(".header-middle").should("be.visible");
