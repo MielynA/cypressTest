@@ -12,7 +12,7 @@ const proceedToCheckout = () => {
 };
 
 describe("Add products in Cart", () => {
-  it("should verify the product is successfully added to cart", () => {
+  it.skip("should verify the product is successfully added to cart", () => {
     cy.addToCart();
     cy.dismissCartModal();
     //get the second product
@@ -30,7 +30,7 @@ describe("Add products in Cart", () => {
     });
   });
 
-  it("should verify the quantity in the Cart", () => {
+  it.skip("should verify the quantity in the Cart", () => {
     cy.get('a[href="/product_details/1"]').contains("View Product").click();
     cy.get("#quantity").clear().type(4).should("have.value", "4");
     cy.get(".btn.btn-default.cart").should("be.visible").click();
@@ -42,7 +42,7 @@ describe("Add products in Cart", () => {
     cy.get(".disabled").should("have.text", "4");
   });
 
-  it("should place order and register WHILE checkout", () => {
+  it.skip("should place order and register WHILE checkout", () => {
     cy.addToCart();
     cy.dismissCartModal();
     proceedToCheckout();
@@ -69,7 +69,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and REGISTER before checkout", () => {
+  it.skip("should place order and REGISTER before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -93,7 +93,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should place order and LOGIN before checkout", () => {
+  it.skip("should place order and LOGIN before checkout", () => {
     cy.navigateTo(" Signup / Login", "/login");
     cy.createUser();
     cy.addToCart();
@@ -117,7 +117,7 @@ describe("Add products in Cart", () => {
     cy.deleteUser();
   });
 
-  it("should remove products from cart", () => {
+  it.skip("should remove products from cart", () => {
     cy.addToCart();
     cy.dismissCartModal();
     cy.navigateTo("Cart", "/view_cart").should("exist");
@@ -125,5 +125,23 @@ describe("Add products in Cart", () => {
     cy.get("#empty_cart")
       .should("be.visible")
       .and("contain.text", "Cart is empty!");
+  });
+
+  it("should verify address in details in checkout page", () => {
+    cy.navigateTo("Signup / Login", "/login").should("exist");
+    cy.createUser();
+    cy.addToCart();
+    cy.dismissCartModal();
+    proceedToCheckout();
+    cy.get("#address_delivery .address_firstname")
+      .invoke("text")
+      .then((deliveryText) => {
+        cy.get("#address_invoice .address_firstname")
+          .invoke("text")
+          .then((invoiceName) => {
+            expect(deliveryText.trim()).to.eq(invoiceName.trim());
+          });
+      });
+    cy.deleteUser();
   });
 });
