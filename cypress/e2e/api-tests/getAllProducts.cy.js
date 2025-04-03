@@ -27,6 +27,7 @@ describe("testing API products and response statuses", () => {
       }
     );
   });
+
   it("should POST to all the product list", () => {
     cy.request({
       method: "POST",
@@ -40,4 +41,5 @@ describe("testing API products and response statuses", () => {
       );
     });
   });
+
 });
