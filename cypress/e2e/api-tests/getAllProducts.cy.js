@@ -27,4 +27,17 @@ describe("testing API products and response statuses", () => {
       }
     );
   });
+  it("should POST to all the product list", () => {
+    cy.request({
+      method: "POST",
+      url: "https://automationexercise.com/api/productsList",
+      failOnStatusCode: false,
+    }).then((response) => {
+      const bodyResponse = JSON.parse(response.body);
+      expect(bodyResponse.responseCode).to.eq(405);
+      expect(bodyResponse.message).to.eq(
+        "This request method is not supported."
+      );
+    });
+  });
 });
