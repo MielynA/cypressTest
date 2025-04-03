@@ -1,31 +1,44 @@
 describe("testing API products and response statuses", () => {
   it("should test to get the id of the product", () => {
-    cy.request("GET", "https://automationexercise.com/api/productsList").should(
-      (response) => {
-        console.log(response);
-        expect(response.status).to.eq(200);
-        expect(response.body).to.have.contains("id", 1);
-      }
-    );
+    cy.apiRequest(
+      "GET",
+      "https://automationexercise.com/api/productsList"
+    ).then(({ status, parseBody }) => {
+      expect(status).to.be.eq(200);
+      expect(parseBody).to.have.property("products");
+      expect(parseBody.products[0]).to.have.property("id");
+    });
   });
 
   it("should GET the content of the body", () => {
-    cy.request("GET", "https://automationexercise.com/api/productsList").should(
-      (response) => {
-        expect(response.status).to.eq(200);
+    // cy.request("GET", "https://automationexercise.com/api/productsList").should(
+    //   (response) => {
+    //     expect(response.status).to.eq(200);
 
-        const jsonParse = JSON.parse(response.body);
-        expect(jsonParse.products).to.be.an("array").not.to.be.empty;
+    //     const jsonParse = JSON.parse(response.body);
+    //     expect(jsonParse.products).to.be.an("array").not.to.be.empty;
 
-        expect(jsonParse).to.have.property("products");
+    //     expect(jsonParse).to.have.property("products");
 
-        const firstProduct = jsonParse.products[0];
+    //     const firstProduct = jsonParse.products[0];
 
-        expect(firstProduct).to.have.property("category");
-        expect(firstProduct).to.have.property("price");
-        expect(firstProduct).to.have.property("brand");
-      }
-    );
+    //     expect(firstProduct).to.have.property("category");
+    //     expect(firstProduct).to.have.property("price");
+    //     expect(firstProduct).to.have.property("brand");
+    //   }
+    // );
+    cy.apiRequest(
+      "GET",
+      "https://automationexercise.com/api/productsList"
+    ).then(({ status, parseBody }) => {
+      expect(status).to.be.eq(200);
+      expect(parseBody.products).to.be.an("array").not.to.be.empty;
+      expect(parseBody).to.have.property("products");
+      const firstProduct = parseBody.products[0];
+      expect(firstProduct).to.have.property("category");
+      expect(firstProduct).to.have.property("price");
+      expect(firstProduct).to.have.property("brand");
+    });
   });
 
   it("should POST to all the product list", () => {
