@@ -43,4 +43,15 @@ describe("testing API products and response statuses", () => {
       }
     );
   });
+
+  it("should PUT to All brand list", () => {
+    cy.apiRequest("PUT", "https://automationexercise.com/api/brandsList").then(
+      ({ parseBody }) => {
+        expect(parseBody.responseCode).to.be.eq(405);
+        expect(parseBody.message).to.eq(
+          "This request method is not supported."
+        );
+      }
+    );
+  });
 });
