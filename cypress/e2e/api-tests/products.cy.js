@@ -70,8 +70,22 @@ describe("testing API products and response statuses", () => {
   it("should POST to search product", () => {
     cy.apiRequest("POST", "https://automationexercise.com/api/searchProduct", {
       search_product: "top",
-    }).then(({ status, parseBody }) => {
+    }).then(({ status }) => {
       expect(status).to.be.eq(200);
+    });
+  });
+
+  it("should POST to search product without search product params", () => {
+    cy.apiRequest(
+      "POST",
+      "https://automationexercise.com/api/searchProduct",
+      true,
+      {}
+    ).then(({ parseBody }) => {
+      expect(parseBody.responseCode).to.be.eq(400);
+      expect(parseBody.message).to.eq(
+        "Bad request, search_product parameter is missing in POST request."
+      );
     });
   });
 });
