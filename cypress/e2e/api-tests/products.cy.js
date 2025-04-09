@@ -54,4 +54,16 @@ describe("testing API products and response statuses", () => {
       }
     );
   });
+
+  it.skip("just practice", () => {
+    cy.intercept("GET", "https://automationexercise.com/api/productsList", {
+      statusCode: 200,
+      body: [{ id: 1, name: "Blue Top" }],
+    }).as("getProductName");
+    cy.accessUrl();
+    cy.navigateTo("Home", "/");
+    cy.addToCart();
+    //  cy.visit("/add_to_cart/1");
+    cy.wait("@getProductName").its("response.statusCode").should("eq", 200);
+  });
 });
