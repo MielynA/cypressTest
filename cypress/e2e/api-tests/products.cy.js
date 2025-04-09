@@ -66,4 +66,12 @@ describe("testing API products and response statuses", () => {
     //  cy.visit("/add_to_cart/1");
     cy.wait("@getProductName").its("response.statusCode").should("eq", 200);
   });
+
+  it("should POST to search product", () => {
+    cy.apiRequest("POST", "https://automationexercise.com/api/searchProduct", {
+      search_product: "top",
+    }).then(({ status, parseBody }) => {
+      expect(status).to.be.eq(200);
+    });
+  });
 });
