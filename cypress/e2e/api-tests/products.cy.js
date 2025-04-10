@@ -88,4 +88,21 @@ describe("testing API products and response statuses", () => {
       );
     });
   });
+
+  it("should verify login with valid credentials", () => {
+    cy.apiRequest("POST", "https://automationexercise.com/api/verifyLogin", {
+      body: {
+        email: "testUsers2272025+2@example.com",
+        password: "Password123",
+      },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      form: true,
+    }).then(({ status, parseBody }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(200);
+      expect(parseBody.message).to.eq("User exists!");
+    });
+  });
 });
