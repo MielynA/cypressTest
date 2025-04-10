@@ -105,4 +105,15 @@ describe("testing API products and response statuses", () => {
       expect(parseBody.message).to.eq("User exists!");
     });
   });
+
+  it("should DELETE to verify login", () => {
+    cy.apiRequest(
+      "DELETE",
+      "https://automationexercise.com/api/verifyLogin"
+    ).then(({ status, parseBody }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(405);
+      expect(parseBody.message).to.eq("This request method is not supported.");
+    });
+  });
 });
