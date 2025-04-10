@@ -11,7 +11,7 @@ Framework: Cypress
 
 Language: JavaScript (ES6+)
 
-CI/CD: GitHub Actions (or specify if using CircleCI, Travis, etc.)
+CI/CD: GitHub Actions 
 
 Design Pattern: Modular structure with reusable custom commands
 
@@ -39,7 +39,7 @@ Contact form and order placement
 # ⚙️ CI/CD Integration
 Easily maintainable and scalable test automation
 
-Automatically runs test suite via CI pipeline (e.g., GitHub Actions)
+Automatically runs test suite via CI pipeline (GitHub Actions)
 
 Helps ensure high test reliability across code changes
 
