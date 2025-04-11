@@ -130,4 +130,39 @@ describe("testing API products and response statuses", () => {
       expect(parseBody.message).to.eq("User not found!");
     });
   });
+
+  const timestamp = Date.now();
+  const email = `testAPI${timestamp}@example.com`;
+
+  it("should POST to create/register user account", () => {
+    cy.apiRequest("POST", "https://automationexercise.com/api/createAccount", {
+      body: {
+        name: "MieApi",
+        email: email,
+        password: "PasswordAPI",
+        title: "Miss",
+        birth_date: "10",
+        birth_month: "Jan",
+        birth_year: "1990",
+        firstname: "Mie",
+        lastname: "Acosta",
+        company: "test",
+        address1: "test",
+        address2: "test",
+        country: "Unites States",
+        zipcode: "11123",
+        state: "Texas",
+        city: "Houston",
+        mobile_number: "123-456-5567",
+      },
+      form: true,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }).then(({ status, parseBody }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(201);
+      expect(parseBody.message).to.eq("User created!");
+    });
+  });
 });
