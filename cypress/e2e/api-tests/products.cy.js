@@ -219,4 +219,21 @@ describe("testing API products and response statuses", () => {
       expect(parseBody.message).to.eq("User updated!");
     });
   });
+
+  it("should GET user account detail by email", () => {
+    const email = "testUsers2272025+2@example.com";
+    const encodedEmail = encodeURIComponent(email);
+    cy.apiRequest(
+      "GET",
+      `https://automationexercise.com/api/getUserDetailByEmail?email=${encodedEmail}`
+    ).then(({ parseBody, status }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(200);
+      expect(parseBody.user.email).to.eq(email);
+      console.log(parseBody.user);
+      expect(parseBody.user.first_name).to.eq("Mietest");
+      expect(parseBody.user.name).to.eq("testUsers_2272025");
+      expect(parseBody.user.country).to.eq("United States");
+    });
+  });
 });
