@@ -220,7 +220,7 @@ describe("testing API products and response statuses", () => {
     });
   });
 
-  it("should GET user account detail by email", () => {
+  it("should GET user account details", () => {
     const email = "testUsers2272025+2@example.com";
     const encodedEmail = encodeURIComponent(email);
     cy.apiRequest(
