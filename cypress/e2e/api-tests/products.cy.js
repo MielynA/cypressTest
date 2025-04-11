@@ -165,4 +165,22 @@ describe("testing API products and response statuses", () => {
       expect(parseBody.message).to.eq("User created!");
     });
   });
+
+  it("should DELETE user account", () => {
+    cy.apiRequest(
+      "DELETE",
+      "https://automationexercise.com/api/deleteAccount",
+      {
+        body: {
+          email: email,
+          password: "PasswordAPI",
+        },
+        form: true,
+      }
+    ).then(({ parseBody, status }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(200);
+      expect(parseBody.message).to.eq("Account deleted!");
+    });
+  });
 });
