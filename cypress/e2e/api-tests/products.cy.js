@@ -116,4 +116,18 @@ describe("testing API products and response statuses", () => {
       expect(parseBody.message).to.eq("This request method is not supported.");
     });
   });
+
+  it("should POST to verify login with invalid details", () => {
+    cy.apiRequest("POST", "https://automationexercise.com/api/verifyLogin", {
+      body: {
+        email: "testUsers2272025+2@example.com",
+        password: "invalidPassword",
+      },
+      form: true,
+    }).then(({ status, parseBody }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(404);
+      expect(parseBody.message).to.eq("User not found!");
+    });
+  });
 });
