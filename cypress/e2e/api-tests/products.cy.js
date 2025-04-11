@@ -131,14 +131,13 @@ describe("testing API products and response statuses", () => {
     });
   });
 
-  const timestamp = Date.now();
-  const email = `testAPI${timestamp}@example.com`;
+  const email = `testAPI${Date.now()}@example.com`;
 
   it("should POST to create/register user account", () => {
     cy.apiRequest("POST", "https://automationexercise.com/api/createAccount", {
       body: {
         name: "MieApi",
-        email: email,
+        email,
         password: "PasswordAPI",
         title: "Miss",
         birth_date: "10",
@@ -184,4 +183,40 @@ describe("testing API products and response statuses", () => {
     });
   });
 
+  it("should PUT to update user account", () => {
+    cy.createUserAccountAPI(email).then(({ parseBody }) => {
+      expect(parseBody.responseCode).to.eq(201);
+      expect(parseBody.message).to.eq("User created!");
+    });
+
+    cy.apiRequest("PUT", "https://automationexercise.com/api/updateAccount", {
+      body: {
+        name: "MieQA",
+        email,
+        password: "PasswordAPI",
+        title: "Mr",
+        birth_date: "10",
+        birth_month: "Jan",
+        birth_year: "1990",
+        firstname: "Mieupdate",
+        lastname: "Acosta",
+        company: "test",
+        address1: "test",
+        address2: "test",
+        country: "Unites States",
+        zipcode: "11123",
+        state: "Texas",
+        city: "Houston",
+        mobile_number: "123-456-5567",
+      },
+      form: true,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }).then(({ parseBody, status }) => {
+      expect(status).to.eq(200);
+      expect(parseBody.responseCode).to.eq(200);
+      expect(parseBody.message).to.eq("User updated!");
+    });
+  });
 });
