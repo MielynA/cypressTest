@@ -230,7 +230,6 @@ describe("testing API products and response statuses", () => {
       expect(status).to.eq(200);
       expect(parseBody.responseCode).to.eq(200);
       expect(parseBody.user.email).to.eq(email);
-      console.log(parseBody.user);
       expect(parseBody.user.first_name).to.eq("Mietest");
       expect(parseBody.user.name).to.eq("testUsers_2272025");
       expect(parseBody.user.country).to.eq("United States");
